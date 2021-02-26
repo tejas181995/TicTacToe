@@ -1,36 +1,51 @@
 import java.util.Scanner;
 
+
 class TicTacToe {
     private char playerSymbol, computerSymbol;
-    private char[] board = new char [10];
-    public TicTacToe(){
+    public char [] createBoard(){
+        char [] board = new char[10];
         for(int i=0; i<10; i++){
             board[i] = ' ';
         }
+        return board;
     }
-
-    public void chooseSymbol(){
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter a Symbol to start. [ x / o]");
-        char sym = sc.nextLine().charAt(0);
-        if(sym == 'x'){
-            playerSymbol = sym;
+    public char getPlayerSymbol(){
+        return playerSymbol;
+    }
+    public char getComputerSymbol(){
+        return computerSymbol;
+    }
+    public boolean chooseSymbol(char symbol){
+        
+        if(symbol== 'x'){
+            playerSymbol =symbol;
             computerSymbol = 'o';
-            System.out.println("your symbol is: " + playerSymbol);
-        }else if (sym == 'o'){
-            playerSymbol = sym;
-            computerSymbol = 'x';
-            System.out.println("your symbol is: " + playerSymbol);
+            return true;
 
-        }else{
-            System.out.println("Wrong symbol selected");
-            chooseSymbol();
+        }else if (symbol== 'o'){
+            playerSymbol =symbol;
+            computerSymbol = 'x';
+            return true;
+
         }
+        return false;
 
     }
     public static void main(String[] args) {
         TicTacToe tacToe = new TicTacToe();
-        tacToe.chooseSymbol();
+        char [] board = tacToe.createBoard();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter Symbol [x / o ]");
+        char symbol = sc.nextLine().charAt(0);
+        while(!tacToe.chooseSymbol(symbol)){
+            System.out.println("invalid Symbol");
+            System.out.println("Enter Symbol [x / o ]");
+            symbol = sc.nextLine().charAt(0);
+        }
+        System.out.println("player symbol is: "+  tacToe.getPlayerSymbol());
+
+
     }
 }
 
