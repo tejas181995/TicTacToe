@@ -32,6 +32,15 @@ class TicTacToe {
         return false;
 
     }
+    public void showBoard(char[] board){
+        for(int i=1; i<10; i++ ){
+            System.out.print(board[i] + "| ");
+            if(i%3 == 0){
+                System.out.println();
+            }
+        }
+
+    }
     public static void main(String[] args) {
         TicTacToe tacToe = new TicTacToe();
         char [] board = tacToe.createBoard();
@@ -44,6 +53,7 @@ class TicTacToe {
             symbol = sc.nextLine().charAt(0);
         }
         System.out.println("player symbol is: "+  tacToe.getPlayerSymbol());
+        tacToe.showBoard(board);
 
 
     }
