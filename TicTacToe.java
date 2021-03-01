@@ -71,6 +71,15 @@ class TicTacToe {
                     return i;
             }
         }
+        for(int i=1; i<10; i++){
+            if(board[i] == ' '){
+                board[i] = tacToe.getPlayerSymbol();
+                hasWon = isGameOver();
+                board[i] = ' ';
+                if(hasWon)
+                    return i;
+            }
+        }
         int index = (int) (Math.floor(Math.random() * 9) % 9 + 1);
         while (board[index] != ' ') {
             index = (int) (Math.floor(Math.random() * 9) % 9 + 1);
