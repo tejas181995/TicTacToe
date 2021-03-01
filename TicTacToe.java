@@ -73,14 +73,20 @@ class TicTacToe {
             board[index] = tacToe.getComputerSymbol();
         }
     }
+    public static void toss(){
+        int turn = (int) (Math.floor(Math.random() * 10) % 2);
+        if(turn == 1){
+            System.out.println("Player plays First..!");
+        }else{
+            System.out.println("Computer plays First..!");
+        }
+        
+    }
     public static void main(String[] args) {
         tacToe = new TicTacToe();
         board = tacToe.createBoard();
         selectSymbol();
         tacToe.showBoard(board);
-        
-
-
-
+        toss();
     }
 }
