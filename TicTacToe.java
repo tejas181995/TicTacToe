@@ -60,33 +60,35 @@ class TicTacToe {
         }
         System.out.println("player symbol is: " + tacToe.getPlayerSymbol());
     }
-    public static int smartChoice(){
+
+    public static int smartChoice() {
         boolean hasWon = false;
-        for(int i=1; i<10; i++){
-            if(board[i] == ' '){
+        for (int i = 1; i < 10; i++) {
+            if (board[i] == ' ') {
                 board[i] = tacToe.getComputerSymbol();
                 hasWon = isGameOver();
                 board[i] = ' ';
-                if(hasWon)
+                if (hasWon)
                     return i;
             }
         }
-        for(int i=1; i<10; i++){
-            if(board[i] == ' '){
+        for (int i = 1; i < 10; i++) {
+            if (board[i] == ' ') {
                 board[i] = tacToe.getPlayerSymbol();
                 hasWon = isGameOver();
                 board[i] = ' ';
-                if(hasWon)
+                if (hasWon)
                     return i;
             }
         }
-        int choices[]=new int []{1, 3, 7, 9, 5, 2, 4, 6, 8};
+        int choices[] = new int[] { 1, 3, 7, 9, 5, 2, 4, 6, 8 };
         for (int i : choices) {
-            if(board[i] == ' ')
-            return i;
-        } 
+            if (board[i] == ' ')
+                return i;
+        }
         return 8;
     }
+
     public static void playGame(char symbol) {
         int index;
         if (symbol == tacToe.getComputerSymbol()) {
@@ -143,40 +145,49 @@ class TicTacToe {
     }
 
     public static void main(String[] args) {
+        int playAgain = 1;
         boolean isOver = false;
         tacToe = new TicTacToe();
-        board = tacToe.createBoard();
-        selectSymbol();
-        tacToe.showBoard(board);
-        toss();
-        for (int i = 0; i < 4; i++) {
-            playGame(playerOrder[0]);
+        while (playAgain == 1) {
+            board = tacToe.createBoard();
+            selectSymbol();
             tacToe.showBoard(board);
-            isOver = isGameOver();
-            if (isOver) {
-                System.out.println("Game Over..!!");
-                greetWinner(playerOrder[0]);
-                break;
+            System.out.println(tacToe.getPlayerSymbol() + " " + " " + tacToe.getComputerSymbol());
+            toss();
+            for (int i = 0; i < 4; i++) {
+                playGame(playerOrder[0]);
+                tacToe.showBoard(board);
+                isOver = isGameOver();
+                if (isOver) {
+                    System.out.println("Game Over..!!");
+                    greetWinner(playerOrder[0]);
+                    break;
+                }
+                System.out.println("--------------------------------------------------");
+                playGame(playerOrder[1]);
+                tacToe.showBoard(board);
+                isOver = isGameOver();
+                if (isOver) {
+                    System.out.println("Game Over..!!");
+                    greetWinner(playerOrder[1]);
+                    break;
+                }
+                System.out.println("--------------------------------------------------");
             }
-            System.out.println("--------------------------------------------------");
-            playGame(playerOrder[1]);
-            tacToe.showBoard(board);
-            isOver = isGameOver();
-            if (isOver) {
-                System.out.println("Game Over..!!");
-                greetWinner(playerOrder[1]);
-                break;
+            if (!isOver) {
+                playGame(playerOrder[0]);
+                tacToe.showBoard(board);
+                isOver = isGameOver();
+                if (isOver) {
+                    System.out.println("Game Over..!!");
+                    greetWinner(playerOrder[0]);
+                } else {
+                    System.out.println("It is Draw...!!");
+                }
             }
-            System.out.println("--------------------------------------------------");
-        }
-        if (!isOver) {
-            playGame(playerOrder[0]);
-            tacToe.showBoard(board);
-            isOver = isGameOver();
-            if (isOver) {
-                System.out.println("Game Over..!!");
-                greetWinner(playerOrder[0]);
-            }
+            System.out.println("Would you like to play again....!!! [1/0]");
+            playAgain = sc.nextInt();
+            sc.nextLine();
         }
 
     }
