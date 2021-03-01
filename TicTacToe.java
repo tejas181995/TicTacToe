@@ -148,7 +148,6 @@ class TicTacToe {
         board = tacToe.createBoard();
         selectSymbol();
         tacToe.showBoard(board);
-        System.out.println(tacToe.getPlayerSymbol() + " " + " " + tacToe.getComputerSymbol());
         toss();
         for (int i = 0; i < 4; i++) {
             playGame(playerOrder[0]);
