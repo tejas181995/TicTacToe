@@ -80,6 +80,18 @@ class TicTacToe {
                     return i;
             }
         }
+        if(board[1] == ' '){
+            return 1;
+        }
+        if(board[3] == ' '){
+            return 3;
+        }
+        if(board[7] == ' '){
+            return 7;
+        }
+        if(board[9] == ' '){
+            return 9;
+        }
         int index = (int) (Math.floor(Math.random() * 9) % 9 + 1);
         while (board[index] != ' ') {
             index = (int) (Math.floor(Math.random() * 9) % 9 + 1);
