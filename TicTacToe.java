@@ -80,23 +80,12 @@ class TicTacToe {
                     return i;
             }
         }
-        if(board[1] == ' '){
-            return 1;
-        }
-        if(board[3] == ' '){
-            return 3;
-        }
-        if(board[7] == ' '){
-            return 7;
-        }
-        if(board[9] == ' '){
-            return 9;
-        }
-        int index = (int) (Math.floor(Math.random() * 9) % 9 + 1);
-        while (board[index] != ' ') {
-            index = (int) (Math.floor(Math.random() * 9) % 9 + 1);
-        }
-        return index;
+        int choices[]=new int []{1, 3, 7, 9, 5, 2, 4, 6, 8};
+        for (int i : choices) {
+            if(board[i] == ' ')
+            return i;
+        } 
+        return 8;
     }
     public static void playGame(char symbol) {
         int index;
@@ -159,6 +148,7 @@ class TicTacToe {
         board = tacToe.createBoard();
         selectSymbol();
         tacToe.showBoard(board);
+        System.out.println(tacToe.getPlayerSymbol() + " " + " " + tacToe.getComputerSymbol());
         toss();
         for (int i = 0; i < 4; i++) {
             playGame(playerOrder[0]);
